@@ -1,0 +1,107 @@
+CREATE DATABASE BIBLIOTECA;
+
+USE BIBLIOTECA;
+
+CREATE TABLE livro (
+CodLivro int PRIMARY KEY, auto_increment,
+titulo varchar (100),
+autor varchar (100),
+editora varchar (100),
+genero varchar (100)
+);
+
+CREATE TABLE bibliotecario (
+CodFuncionario int PRIMARY KEY auto_increment,
+email varchar (100) unique;
+nome varchar (100),
+telefone varchar(100),
+DataNascimento date,
+rg Varchar (100) unique,
+cpf varchar (100) unique,
+logradouro varchar (100),
+num int,
+complemento varchar (100),
+bairro varchar (100),
+cidade varchar (100),
+uf char (100),
+cep varchar (100)
+);
+
+CREATE TABLE cliente(
+client int PRIMARY KEY auto_increment,
+telefone varchar(150),
+turma varchar (100),
+nome varchar (100),
+email varchar (100),
+dataNascimento date
+);
+
+CREATE TABLE emprestimo_devolucao (
+CodEmprestimo int PRIMARY KEY auto_increment,
+data_emprestimo date,
+data_devoluçao date,
+cliente int,
+CodFuncionario int,
+CodLivro int,
+FOREIGN KEY(CodLivro) REFERENCES livro (CodLivro),
+FOREIGN KEY(cliente) REFERENCES cliente (codCliente),
+FOREIGN KEY(CodFuncionario) REFERENCES bibliotecario (CodFuncionario)
+);
+
+[27/05 10:01] Assignments
+  
+    
+  
+ 
+  
+    
+   Scipts biblioteca 
+                     
+
+                           
+
+  
+  
+  
+INSERT into livro (titulo, autor, editora, genero) VALUES
+('O Apanhador no Campo de Centeio','J.D. Salinger','Little, Brown and Company','romance'),
+('O Alquimista ',' Paulo Coelho','HarperCollins','aventura'),
+('Harry Potter e o Enigma do Príncipe','J. K. Rowling','Bloomsbury Publishing Plc (Bloomsbury Publishing)','suspense'),
+('Pense e Enriqueça ','Napoleon Hill','record','informativo'),
+('O Código Da Vinci','Dan Brown','Editora Sextante','misterio'),
+('O Leão, a Feiticeira e o Guarda-Roupa',' C.S. Lewis','Geoffrey Bles','ficçao'),
+('Ela, a Feiticeira','H. Rider Haggard','Longman','aventura'),
+('O Sonho da Câmara Vermelha ','Cao Xueqin','E Gao','aventura'),
+('O Caso dos 10 Negrinhos ','Agatha Christie','Biblioteca Azul','suspense'),
+('O Hobbit',' J. R. R. Tolkien','Allen & Unwin','ficçao');
+
+INSERT INTO cliente (nome, email, telefone, turma, dataNascimento) VALUES
+('kaio','kaio@gmail.com','11-999999999','1A','2004-02-08'),
+('leonardo','leo@gmail.com','11-87878787','1C','2004-05-07'),
+('pedro','pedro@gmail.com','11-9585636','1c','2001-04-08'),
+('rafaela','Rafaela@gmail.com','11-97588691','3C','2001-02-02'),
+('josé','josé@gmail.com','11-98956985','3F','2002-01-04'),
+('guilherme','gui@gmail.com','11-584753645','1F','2004-03-04'),
+('bruno','bruno@gmail.com','11-978595426','3A','2002-03-20'),
+('higor','higor@gmail.com','11-985687582','2B','2001-04-21'),
+ ('vitor','vitor@gmail.com','11-6256823','2F','2004-02-21'),
+('joao','joao@hotmail.com','11-95304523','2e','20003-02-24');
+
+INSERT INTO bibliotecario (nome, email, cpf, telefone, cidade, uf, datanascimento) VALUES
+('carlos','carlos@outlook.com','469.508.698-25','11-95322441','Mauá','SP','1980-02-30'),
+('rosana','rosana@outlook.com','478,236.254-24','11-59885874','Santo andré','SP','1967-04-20'),
+('taina','taina@outlook.com','541.236.874-14','11-5555647','Ribeirao pires','SP','1987-03-24');
+
+INSERT INTO emprestimo_devolucao (CodFuncionario, CodLivro, data_devoluçao, data_emprestimo, codCliente) VALUES
+(1,2,'2020-05-20','2020-04-30',1),
+(1,3,'2020-05-20','2020-04-30',2),
+(1,4,'2020-05-20','2020-04-30',3),
+(2,5,'2020-06-10','2020-05-25',4),
+(2,7,'2020-06-10','2020-05-25',5),
+(2,6,'2020-06-10','2020-05-25',6),
+(3,9,'2020-06-10','2020-05-25',7),
+(3,10,'2020-06-11','2020-05-26',8),
+(3,1,'2020-06-11','2020-05-26',9),
+(3,8,'2020-06-11','2020-05-26',10);
+
+
